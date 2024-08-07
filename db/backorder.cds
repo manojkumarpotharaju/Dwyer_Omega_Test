@@ -12,7 +12,7 @@ entity BackOrderItem {
     hybrisOrderNumber  : String(255);
     poNumber           : String(20);
     orderPlacedBy      : String(255);
-    paymentTerms       : String(255);
+    paymentTerms       : String;
     orderType          : String(20);
     soldTo             : String(255);  
 }
