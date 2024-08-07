@@ -23,7 +23,7 @@ stages:
     malwareExecuteScan: false
   Release:
     tmsExport: true
-    tmsUpload: true
+    tmsUpload: false
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
     cfOrg: "Dwyer Instruments LLC_pbc-dev-lbyb32ei"
     cfSpace: "DEV"
@@ -36,8 +36,8 @@ stages:
 steps:
   cloudFoundryDeploy:
     mtaDeployParameters: "-f --version-rule ALL"
-  artifactPrepareVersion:
-    versioningType: "cloud_noTag"
-  tmsUpload:
+  tmsExport:
     nodeName: "DEV"
     credentialsId: "tmsauth"
+  artifactPrepareVersion:
+    versioningType: "cloud_noTag"
