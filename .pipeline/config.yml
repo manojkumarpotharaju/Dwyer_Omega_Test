@@ -1,43 +1,53 @@
 ---
 general:
-  buildTool: "mta"
+  buildTool: "mta"  # Specifies the build tool
+
 service:
-  buildToolVersion: "MBTJ17N18"
+  buildToolVersion: "MBTJ17N18"  # Version of the build tool
   stages:
     Acceptance:
-      cfCredentialsId: "deploy-to-cf"
+      cfCredentialsId: "deploy-to-cf"  # Cloud Foundry credentials ID for Acceptance stage
     Release:
-      cfCredentialsId: "deploy-to-cf"
+      cfCredentialsId: "deploy-to-cf"  # Cloud Foundry credentials ID for Release stage
+
 stages:
   Build:
-    mavenExecuteStaticCodeChecks: false
-    npmExecuteLint: true
+    mavenExecuteStaticCodeChecks: false  # Disable Maven static code checks
+    npmExecuteLint: true  # Enable NPM linting
+
   Acceptance:
-    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-    cfOrg: "pbc-dev-lbyb32ei"
-    cfSpace: "DEV"
-    deployType: "standard"
-    cloudFoundryDeploy: true
-    npmExecuteEndToEndTests: true
+    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"  # Cloud Foundry API endpoint
+    cfOrg: "pbc-dev-lbyb32ei"  # Cloud Foundry organization
+    cfSpace: "DEV"  # Cloud Foundry space
+    deployType: "standard"  # Deployment type
+    cloudFoundryDeploy: true  # Enable Cloud Foundry deployment
+    npmExecuteEndToEndTests: true  # Enable end-to-end tests
+
   Malware Scan:
-    malwareExecuteScan: false
+    malwareExecuteScan: false  # Disable malware scan
+
   Release:
-    tmsExport: true
-    tmsUpload: true
-    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-    cfOrg: "pbc-dev-lbyb32ei"
-    cfSpace: "DEV"
-    deployType: "standard"
-    cloudFoundryDeploy: true
+    tmsExport: true  # Enable TMS export
+    tmsUpload: true  # Enable TMS upload
+    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"  # Cloud Foundry API endpoint
+    cfOrg: "pbc-dev-lbyb32ei"  # Cloud Foundry organization
+    cfSpace: "DEV"  # Cloud Foundry space
+    deployType: "standard"  # Deployment type
+    cloudFoundryDeploy: true  # Enable Cloud Foundry deployment
+
   Additional Unit Tests:
-    npmExecuteScripts: false
+    npmExecuteScripts: false  # Disable additional unit tests
+
   Compliance:
-    sonarExecuteScan: false
+    sonarExecuteScan: false  # Disable SonarQube scan
+
 steps:
   cloudFoundryDeploy:
-    mtaDeployParameters: "-f --version-rule ALL"
+    mtaDeployParameters: "-f --version-rule ALL"  # Parameters for MTA deployment
+
   artifactPrepareVersion:
-    versioningType: "cloud_noTag"
+    versioningType: "cloud_noTag"  # Versioning type
+
   tmsUpload:
-    nodeName: "DEV"
-    credentialsId: "tmsauth"
+    nodeName: "DEV"  # Node name for TMS upload
+    credentialsId: "tmsauth"  # Credentials ID for TMS
